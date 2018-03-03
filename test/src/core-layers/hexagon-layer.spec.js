@@ -326,11 +326,11 @@ test('HexagonLayer#updateLayer', t => {
 });
 
 test('HexagonLayer#updateTriggers', t => {
-  const functionsToSpy = ['_onGetSublayerColor', '_onGetSublayerElevation'];
+  const SPIES = ['_onGetSublayerColor', '_onGetSublayerElevation'];
 
   testLayer({
     Layer: HexagonLayer,
-    spies: functionsToSpy,
+    spies: SPIES,
     userData: t,
     testCases: [
       {
@@ -346,7 +346,6 @@ test('HexagonLayer#updateTriggers', t => {
         props: {
           radius: 800
         },
-        spies: functionsToSpy,
         assert({subLayer, spies, userData}) {
           t.ok(spies._onGetSublayerColor.called, 'update radius should call _onGetSublayerColor');
           t.ok(
@@ -360,7 +359,6 @@ test('HexagonLayer#updateTriggers', t => {
         props: {
           opacity: 0.1
         },
-        spies: functionsToSpy,
         assert({subLayer, spies, userData}) {
           t.ok(
             !spies._onGetSublayerColor.called,
@@ -377,7 +375,6 @@ test('HexagonLayer#updateTriggers', t => {
         props: {
           getColorValue
         },
-        spies: functionsToSpy,
         assert({subLayer, spies, userData}) {
           t.ok(
             spies._onGetSublayerColor.called,
@@ -394,7 +391,6 @@ test('HexagonLayer#updateTriggers', t => {
         props: {
           upperPercentile: 90
         },
-        spies: functionsToSpy,
         assert({subLayer, spies, userData}) {
           t.ok(
             spies._onGetSublayerColor.called,
@@ -411,7 +407,6 @@ test('HexagonLayer#updateTriggers', t => {
         props: {
           getElevationValue
         },
-        spies: functionsToSpy,
         assert({subLayer, spies, userData}) {
           t.ok(
             !spies._onGetSublayerColor.called,
@@ -428,7 +423,6 @@ test('HexagonLayer#updateTriggers', t => {
         props: {
           elevationUpperPercentile: 99
         },
-        spies: functionsToSpy,
         assert({subLayer, spies, userData}) {
           t.ok(
             !spies._onGetSublayerColor.called,
@@ -445,7 +439,6 @@ test('HexagonLayer#updateTriggers', t => {
         props: {
           elevationRange: [0, 100]
         },
-        spies: functionsToSpy,
         assert({subLayer, spies, userData}) {
           t.ok(
             !spies._onGetSublayerColor.called,
