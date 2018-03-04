@@ -65,7 +65,8 @@ export default class AsciiLayer extends CompositeLayer {
       const r = frame.data[i * 4];
       const g = frame.data[i * 4 + 1];
       const b = frame.data[i * 4 + 2];
-      const l = ((r + g + b) / 3) | 0;
+      // Relative luminance (https://en.wikipedia.org/wiki/Relative_luminance)
+      const l = (0.2126*r + 0.7152*g + 0.0722*b) | 0;
       data[i].char = CHARS[l];
       data[i].color = [
         bitColor(r),

@@ -5,7 +5,7 @@ import AsciiLayer from './ascii-layer/ascii-layer';
 export default class DeckGLOverlay extends Component {
 
   render() {
-    const {width, height, video, timestamp} = this.props;
+    const {width, height, video, timestamp, sizeScale} = this.props;
 
     if (!video) {
       return null;
@@ -13,11 +13,11 @@ export default class DeckGLOverlay extends Component {
 
     const layer = new AsciiLayer({
       id: 'video',
-      sizeScale: 0.5,
       width,
       height,
       video,
-      timestamp
+      timestamp,
+      sizeScale
     });
 
     const viewport = new OrthographicViewport({
